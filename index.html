@@ -292,6 +292,73 @@ svg{display:block}
 @keyframes pulse{50%{opacity:.3;transform:scale(.7)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* ---------- 연수 보조 막대 ---------- */
+.subbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+.chip-tog{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--line);background:var(--surface);
+  font:600 14px var(--f-body);color:var(--ink);cursor:pointer;transition:transform .25s var(--ease),box-shadow .28s var(--ease),border-color .2s,background .22s,color .22s}
+.chip-tog svg{width:16px;height:16px;color:var(--green);transition:transform .5s var(--ease),color .2s}
+.chip-tog:hover{border-color:var(--leaf);transform:translateY(-2px);box-shadow:var(--shadow)}
+.chip-tog:hover svg{transform:rotate(72deg) scale(1.18)}
+.chip-tog[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--on-green);box-shadow:0 8px 16px -10px var(--green)}
+.chip-tog[aria-pressed="true"] svg{color:var(--on-green)}
+.chip-tog .n,.seg2 .n{font:500 12px var(--f-mono);opacity:.8}
+.chip-tog:focus-visible,.seg2 button:focus-visible,.qchip:focus-visible,.trow:focus-visible,.tref:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.seg2{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--surface);max-width:100%}
+.seg2 button{border:0;background:none;font:600 13.5px var(--f-body);color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer;
+  display:flex;gap:6px;align-items:baseline;transition:background .22s,color .22s,transform .22s var(--ease)}
+.seg2 button:hover{color:var(--green);transform:translateY(-1px)}
+.seg2 button[aria-pressed="true"]{background:var(--green-soft);color:var(--chip-ink)}
+.sum .brk{display:inline-flex;gap:10px;flex-wrap:wrap;font-family:var(--f-mono);font-size:13px}
+.sum .brk em{font-style:normal;color:var(--ink)}
+.form{font:600 11px/1 var(--f-body);padding:4px 7px;border-radius:6px;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
+.form[data-f="집합"]{color:var(--chip-ink);box-shadow:inset 0 0 0 1.5px var(--leaf)}
+.aiB{font:700 10.5px/1 var(--f-mono);padding:4px 6px;border-radius:6px;background:var(--ink);color:var(--bg);letter-spacing:.05em}
+.btn.ai-t[aria-pressed="true"]{background:var(--green-soft);color:var(--chip-ink);border-color:var(--leaf)}
+.check{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;cursor:pointer;width:max-content}
+.check input{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+.field select{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:10px 12px;font-size:14.5px;outline:none;
+  transition:border-color .2s,box-shadow .25s;cursor:pointer}
+.field select:hover{border-color:var(--leaf)}
+.field select:focus{border-color:var(--green);box-shadow:0 0 0 4px var(--green-soft)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-foot .grow{flex:1}
+
+/* ---------- 전보 점수판 ---------- */
+.tboard{display:flex;flex-direction:column;gap:22px}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px 20px;
+  display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--green);transform:scaleX(.18);transform-origin:left;transition:transform .5s var(--ease)}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--leaf)}
+.tile:hover::after{transform:scaleX(1)}
+.tile span{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.08em}
+.tile b{font-family:var(--f-display);font-weight:400;font-size:42px;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+.tile small{font:12.5px var(--f-mono);color:var(--muted)}
+.tile.out::after{background:var(--leaf)}
+.tgroup{display:flex;flex-direction:column;gap:6px}
+.tg-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:0 4px 2px}
+.tg-h b{font-size:15px}
+.tg-h span{font:12.5px var(--f-mono);color:var(--muted);white-space:nowrap}
+.thead,.trow{display:grid;grid-template-columns:minmax(0,1fr) 68px 68px;gap:12px;align-items:center}
+.thead{padding:0 16px;font-size:12px;color:var(--muted);font-weight:600}
+.thead span:not(:first-child){text-align:right}
+.trow{width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;color:inherit;font:inherit;
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s}
+.trow:hover{transform:translate(3px,-2px);box-shadow:var(--shadow-hover);border-color:var(--leaf)}
+.trow .tt{min-width:0;display:flex;flex-direction:column;gap:3px}
+.trow .tt b{font-weight:600;font-size:14.5px;overflow-wrap:anywhere}
+.trow .tt small{font:12px var(--f-mono);color:var(--muted);display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.trow .sc{font:500 15px var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.trow .sc.z{color:var(--line)}
+.tref{display:inline-flex;align-items:center;font:600 11px/1 var(--f-body);padding:4px 7px;border-radius:6px;background:var(--green-soft);color:var(--chip-ink);
+  border:0;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.tref:hover{transform:translateY(-1px);background:var(--leaf)}
+.qchips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.qchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font:600 13px var(--f-body);color:var(--ink);cursor:pointer;
+  transition:transform .22s var(--ease),border-color .2s,color .2s,box-shadow .25s}
+.qchip:hover{border-color:var(--leaf);color:var(--green);transform:translateY(-2px);box-shadow:var(--shadow)}
+.modal-card .qchips{justify-content:flex-start}
+
 @media (max-width:720px){
   .controls{flex-direction:column;align-items:stretch}
   .tools{justify-content:space-between}
@@ -309,6 +376,10 @@ svg{display:block}
   .row .field:last-child{grid-column:1 / -1}
   .tools .btn span{display:none}
   .tools .btn{padding:10px 11px}
+  .tile b{font-size:34px}
+  .thead,.trow{grid-template-columns:minmax(0,1fr) 54px 54px;gap:8px}
+  .trow{padding:12px}
+  .thead{padding:0 12px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -360,13 +431,14 @@ svg{display:block}
         <button class="tab" role="tab" data-k="training" aria-selected="false">연수 <span class="n" data-n="training">0</span></button>
         <button class="tab" role="tab" data-k="activity" aria-selected="false">활동 <span class="n" data-n="activity">0</span></button>
         <button class="tab" role="tab" data-k="doc" aria-selected="false">공문 <span class="n" data-n="doc">0</span></button>
+        <button class="tab" role="tab" data-k="transfer" aria-selected="false">전보 <span class="n" data-n="transfer">0</span></button>
       </nav>
       <div class="tools">
         <label class="search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <input id="q" type="search" placeholder="검색" aria-label="검색">
         </label>
-        <span class="sel">
+        <span class="sel" id="yearWrap">
           <select id="year" aria-label="연도"><option value="all">전체</option></select>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </span>
@@ -380,6 +452,13 @@ svg{display:block}
         </button>
       </div>
     </section>
+    <div class="subbar" id="subbar" hidden>
+      <button class="chip-tog" id="aiTog" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg>
+        <span>AI 연수만</span><span class="n" id="aiN">0</span>
+      </button>
+      <div class="seg2" id="formSeg" role="group" aria-label="연수 형태"></div>
+    </div>
     <div class="sum" id="sum"></div>
     <section class="timeline" id="list" aria-live="polite"></section>
   </main>
@@ -410,6 +489,7 @@ svg{display:block}
     </section>
   </div>
   <div class="d-foot">
+    <button class="btn ghost sm ai-t" id="dAi" type="button" aria-pressed="false" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg><span>AI 연수</span></button>
     <button class="btn ghost edit" id="dEdit" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg><span>수정</span></button>
     <button class="btn danger" id="dDel" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span>삭제</span></button>
   </div>
@@ -431,11 +511,43 @@ svg{display:block}
       <label class="field"><span>끝</span><input id="fEnd" type="date"></label>
       <label class="field" id="fHoursWrap"><span>시간</span><input id="fHours" type="number" min="0" step="0.5" inputmode="decimal"></label>
     </div>
+    <div class="row2" id="fTrainWrap">
+      <label class="field"><span>형태</span><select id="fForm"><option value="">미정</option><option>집합</option><option>원격</option><option>혼합</option></select></label>
+      <label class="field"><span>이수번호</span><input id="fComp"></label>
+    </div>
+    <label class="check" id="fAiWrap"><input type="checkbox" id="fAi"><span>AI 연수</span></label>
     <label class="field" id="fDocNoWrap" hidden><span>문서번호</span><input id="fDocNo"></label>
     <label class="field"><span>태그</span><input id="fTags" placeholder="AI, 강사"></label>
     <label class="field"><span>메모</span><textarea id="fNote"></textarea></label>
     <div class="modal-foot">
       <button class="btn ghost" type="button" id="edCancel"><span>취소</span></button>
+      <button class="btn primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>저장</span></button>
+    </div>
+  </form>
+</div>
+
+<!-- 전보 점수 -->
+<div class="modal" id="tEditor" hidden>
+  <form class="modal-card" id="tForm" novalidate>
+    <h2 id="tHead">전보 점수</h2>
+    <label class="field"><span>항목</span><input id="tCat" list="tCats" autocomplete="off"></label>
+    <datalist id="tCats"></datalist>
+    <div class="qchips" id="tChips"></div>
+    <label class="field"><span>내용</span><input id="tDesc" placeholder="예: 석적초 6학년 담임"></label>
+    <div class="row2">
+      <label class="field"><span>시작</span><input id="tStart" type="date"></label>
+      <label class="field"><span>끝</span><input id="tEnd" type="date"></label>
+    </div>
+    <div class="row2">
+      <label class="field"><span>관내 점수</span><input id="tIn" type="number" step="0.001" inputmode="decimal"></label>
+      <label class="field"><span>관외 점수</span><input id="tOut" type="number" step="0.001" inputmode="decimal"></label>
+    </div>
+    <label class="field"><span>근거 기록</span><select id="tRef"></select></label>
+    <label class="field"><span>메모</span><textarea id="tNote"></textarea></label>
+    <div class="modal-foot">
+      <button class="btn danger" type="button" id="tDel" hidden><span>삭제</span></button>
+      <span class="grow"></span>
+      <button class="btn ghost" type="button" id="tCancel"><span>취소</span></button>
       <button class="btn primary" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>저장</span></button>
     </div>
   </form>
@@ -468,7 +580,8 @@ const MIME={pdf:"application/pdf",hwp:"application/x-hwp",hwpx:"application/hwp+
 
 const $=id=>document.getElementById(id);
 const S={user:null,folder:null,docsFolderId:null,attachFolderId:null,dataFile:null,dirty:false,
-  data:{version:1,owner:"황영수",items:[]},filter:"all",year:"all",q:"",openId:null,editId:null,bodyCache:{},loading:false};
+  data:{version:1,owner:"황영수",items:[],transfer:[]},filter:"all",year:"all",q:"",openId:null,editId:null,bodyCache:{},loading:false,
+  ai:false,form:"all",tEditId:null};
 let tokenClient=null,token=null,tokenExp=0;
 
 /* ---------- helpers ---------- */
@@ -493,6 +606,20 @@ function size(b){if(!b&&b!==0)return "";b=Number(b);if(b<1024)return b+"B";if(b<
 function extOf(n){const m=/\.([a-z0-9]+)$/i.exec(n||"");return m?m[1].toLowerCase():""}
 function norm(it){it.tags=Array.isArray(it.tags)?it.tags:[];it.files=Array.isArray(it.files)?it.files:[];if(!KIND[it.kind])it.kind="activity";return it}
 function findItem(id){return S.data.items.find(x=>x.id===id)}
+const AI_TAG="AI·디지털";
+const FORMS=["집합","원격","혼합","미분류"];
+function isAI(it){return (it.tags||[]).includes(AI_TAG)}
+function formOf(it){
+  const f=String((it.extra&&it.extra["형태"])||"");
+  if(/집합|대면/.test(f))return "집합";if(/원격|온라인/.test(f))return "원격";if(/혼합|블렌디드/.test(f))return "혼합";
+  const s=[it.title,it.extra&&it.extra["이수번호"]].join(" ");
+  if(/원격|온라인|마이크로러닝/.test(s))return "원격";
+  return "미분류";
+}
+function trainPass(it){return (!S.ai||isAI(it))&&(S.form==="all"||formOf(it)===S.form)}
+function hoursOf(rows){return rows.reduce((a,r)=>a+(Number(r.hours)||0),0)}
+function fmtScore(x){const n=Number(x)||0;return String(Math.round(n*1000)/1000)}
+const T_CATS=["근무 학교","근무경력","담임 경력","보직교사(부장) 경력","학교폭력 업무 담당","업무 담당 경력","연구학교 근무","벽지·농어촌 근무","연구 실적","특수 업무","기타 가산점"];
 function safeName(s){return String(s||"").replace(/[\\/:*?"<>|\r\n\t]+/g," ").replace(/\s+/g," ").trim().slice(0,90)}
 
 let toastT=null;
@@ -549,7 +676,7 @@ function restoreToken(){
 function logout(){
   try{if(token&&window.google)google.accounts.oauth2.revoke(token,()=>{})}catch(e){}
   token=null;tokenExp=0;sset("pf_tok",null,"s");sset("pf_hint",null);
-  S.user=null;S.folder=null;S.dataFile=null;S.docsFolderId=null;S.attachFolderId=null;S.data={version:1,owner:"황영수",items:[]};S.bodyCache={};
+  S.user=null;S.folder=null;S.dataFile=null;S.docsFolderId=null;S.attachFolderId=null;S.data={version:1,owner:"황영수",items:[],transfer:[]};S.bodyCache={};
   closeDrawer();$("app").hidden=true;$("gate").hidden=false;gateMsg(null);
 }
 
@@ -596,13 +723,14 @@ async function writeText(id,text,mime){
 async function loadData(){
   const fs=await list(`name = '${DATA_NAME}' and '${q1(S.folder.id)}' in parents and trashed = false`);
   if(!fs.length){
-    S.data={version:1,owner:"황영수",items:[]};
+    S.data={version:1,owner:"황영수",items:[],transfer:[]};
     S.dataFile=await upload(new Blob([JSON.stringify(S.data)],{type:"application/json"}),DATA_NAME,S.folder.id,"application/json");
     return;
   }
   S.dataFile=fs[0];
   const parsed=JSON.parse((await readText(fs[0].id))||"{}");
   parsed.items=(Array.isArray(parsed.items)?parsed.items:[]).map(norm);
+  parsed.transfer=Array.isArray(parsed.transfer)?parsed.transfer:[];
   S.data=parsed;
 }
 let chain=Promise.resolve();
@@ -667,7 +795,7 @@ function visible(){
 }
 function render(){
   const base=visible();
-  const counts={all:base.length,training:0,activity:0,doc:0};let hours=0;
+  const counts={all:base.length,training:0,activity:0,doc:0,transfer:tVisible().length};let hours=0;
   base.forEach(it=>{counts[it.kind]++;if(it.kind==="training"&&it.hours)hours+=Number(it.hours)||0});
   document.querySelectorAll("[data-n]").forEach(el=>el.textContent=counts[el.dataset.n]);
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",String(t.dataset.k===S.filter)));
@@ -676,11 +804,15 @@ function render(){
   const ys=$("year");const cur=S.year;
   ys.innerHTML='<option value="all">전체</option>'+years.map(y=>`<option value="${y}">${y}</option>`).join("");
   ys.value=years.includes(cur)?cur:"all";S.year=ys.value;
-  $("sum").innerHTML=counts.training?`<span>연수</span><b>${num(hours)}</b><span>시간</span><span class="sep"></span><span>${counts.training}건</span>`:"";
-  const rows=base.filter(it=>S.filter==="all"||it.kind===S.filter).sort((a,b)=>dateKey(b).localeCompare(dateKey(a)));
+  const isT=S.filter==="training",isX=S.filter==="transfer";
+  $("subbar").hidden=!isT;$("yearWrap").hidden=isX;
+  if(isX){renderTransfer();return}
+  let rows=base.filter(it=>S.filter==="all"||it.kind===S.filter).sort((a,b)=>dateKey(b).localeCompare(dateKey(a)));
+  if(isT){renderSubbar(rows);rows=rows.filter(trainPass);$("sum").innerHTML=trainSumHTML(rows)}
+  else $("sum").innerHTML=counts.training?`<span>연수</span><b>${num(hours)}</b><span>시간</span><span class="sep"></span><span>${counts.training}건</span>`:"";
   const listEl=$("list");
   if(!S.data.items.length){listEl.innerHTML=emptyHTML("아직 기록이 없어요",true);return}
-  if(!rows.length){listEl.innerHTML=emptyHTML("찾는 기록이 없어요",false);return}
+  if(!rows.length){listEl.innerHTML=emptyHTML(isT&&(S.ai||S.form!=="all")?"이 조건의 연수가 없어요":"찾는 기록이 없어요",false);return}
   const groups=[];let g=null;
   rows.forEach(it=>{const k=dateKey(it).slice(0,7)||"none";if(!g||g.k!==k){g={k,items:[]};groups.push(g)}g.items.push(it)});
   let i=0;
@@ -696,7 +828,7 @@ function itemHTML(it,i){
   return `<article class="item" tabindex="0" role="button" data-id="${esc(it.id)}" style="--i:${Math.min(i,14)}">
     <span class="node" aria-hidden="true"></span>
     <div class="it-main">
-      <div class="it-top"><span class="kind k-${it.kind}">${KIND[it.kind]}</span><span class="it-date">${esc(shortPeriod(it))}</span>${src}</div>
+      <div class="it-top"><span class="kind k-${it.kind}">${KIND[it.kind]}</span>${it.kind==="training"?`<span class="form" data-f="${formOf(it)}">${formOf(it)}</span>${isAI(it)?'<span class="aiB">AI</span>':""}`:""}<span class="it-date">${esc(shortPeriod(it))}</span>${src}</div>
       <h3>${esc(it.title||"(제목 없음)")}</h3>
       ${meta||files?`<div class="it-meta">${meta?`<span>${meta}</span>`:""}${files?`<span class="clip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></svg>${files}</span>`:""}</div>`:""}
     </div>
@@ -712,12 +844,125 @@ function moveInd(){
   ind.style.left=sel.offsetLeft+"px";ind.style.width=sel.offsetWidth+"px";
 }
 function copyTable(){
+  if(S.filter==="training")return copyTraining();
+  if(S.filter==="transfer")return copyTransfer();
   const rows=visible().filter(it=>S.filter==="all"||it.kind===S.filter).sort((a,b)=>dateKey(a).localeCompare(dateKey(b)));
   if(!rows.length){toast("복사할 기록이 없어요");return}
   const head=["구분","제목","기관","기간","시간"];
   const clean=s=>String(s==null?"":s).replace(/[\t\r\n]+/g," ");
   const lines=[head.join("\t")].concat(rows.map(it=>[KIND[it.kind],it.title,it.org,fullPeriod(it)||fmtD(it.doc&&it.doc.date),it.hours?num(it.hours):""].map(clean).join("\t")));
   copyText(lines.join("\n"),rows.length+"건을 표로 복사했어요");
+}
+
+function renderSubbar(rows){
+  const aiRows=rows.filter(isAI);
+  $("aiN").textContent=aiRows.length;
+  $("aiTog").setAttribute("aria-pressed",String(S.ai));
+  const pool=S.ai?aiRows:rows;
+  const cnt={};FORMS.forEach(f=>cnt[f]=pool.filter(r=>formOf(r)===f).length);
+  const opts=[["all","전체",pool.length]].concat(FORMS.filter(f=>cnt[f]||S.form===f).map(f=>[f,f,cnt[f]]));
+  $("formSeg").innerHTML=opts.map(([k,l,n])=>`<button type="button" data-f="${k}" aria-pressed="${S.form===k}">${l} <span class="n">${n}</span></button>`).join("");
+}
+function trainSumHTML(rows){
+  if(!rows.length)return "";
+  const parts=FORMS.map(f=>{const r=rows.filter(x=>formOf(x)===f);return r.length?`<span>${f} <em>${num(hoursOf(r))}</em>시간</span>`:""}).join("");
+  return `<span>${S.ai?"AI 연수":"연수"}</span><b>${num(hoursOf(rows))}</b><span>시간</span><span class="sep"></span><span>${rows.length}건</span><span class="sep"></span><span class="brk">${parts}</span>`;
+}
+function copyTraining(){
+  const rows=visible().filter(it=>it.kind==="training").filter(trainPass).sort((a,b)=>dateKey(a).localeCompare(dateKey(b)));
+  if(!rows.length){toast("복사할 연수가 없어요");return}
+  const clean=s=>String(s==null?"":s).replace(/[\t\r\n]+/g," ");
+  const lines=[];
+  FORMS.forEach(f=>{
+    const g=rows.filter(r=>formOf(r)===f);if(!g.length)return;
+    lines.push(`[${f} 연수] ${g.length}건 · ${num(hoursOf(g))}시간`);
+    lines.push(["연수명","기관","기간","시간","이수번호"].join("\t"));
+    g.forEach(it=>lines.push([it.title,it.org,fullPeriod(it),it.hours?num(it.hours):"",it.extra&&it.extra["이수번호"]].map(clean).join("\t")));
+    lines.push("");
+  });
+  lines.push(`합계\t${rows.length}건\t\t${num(hoursOf(rows))}`);
+  copyText(lines.join("\n"),`${S.ai?"AI 연수":"연수"} ${rows.length}건을 형태별로 복사했어요`);
+}
+
+/* ---------- 전보 점수 ---------- */
+function tVisible(){
+  const q=S.q.trim().toLowerCase();
+  return (S.data.transfer||[]).filter(t=>!q||[t.cat,t.title,t.note].join(" ").toLowerCase().includes(q));
+}
+function tPeriod(t){const s=t.start||"",e=t.end||"";if(!s&&!e)return "";if(!e)return fmtD(s)+" ~";if(!s||s===e)return fmtD(e||s);return fmtD(s)+" ~ "+fmtD(e)}
+function hasScore(v){return v!==null&&v!==undefined&&v!==""}
+function tSums(rows){
+  const ins=rows.filter(r=>hasScore(r.inScore)),outs=rows.filter(r=>hasScore(r.outScore));
+  return {inS:ins.reduce((a,r)=>a+Number(r.inScore),0),outS:outs.reduce((a,r)=>a+Number(r.outScore),0),inN:ins.length,outN:outs.length};
+}
+function scoreCell(v){return hasScore(v)?`<span class="sc">${fmtScore(v)}</span>`:'<span class="sc z">–</span>'}
+function qchipsHTML(){return T_CATS.slice(0,8).map(c=>`<button type="button" class="qchip" data-tcat="${esc(c)}">${esc(c)}</button>`).join("")}
+function renderTransfer(){
+  const rows=tVisible();const sm=tSums(rows);
+  $("sum").innerHTML="";
+  const tiles=`<div class="tiles">
+    <div class="tile"><span>관내</span><b>${fmtScore(sm.inS)}</b><small>점 · ${sm.inN}개 항목</small></div>
+    <div class="tile out"><span>관외</span><b>${fmtScore(sm.outS)}</b><small>점 · ${sm.outN}개 항목</small></div></div>`;
+  if(!rows.length){
+    $("list").innerHTML=`<div class="tboard">${tiles}<div class="empty"><div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13M12 6l6 6-6 6"/><path d="M21 4v16"/></svg></div><b>${S.q?"찾는 점수 기록이 없어요":"전보 점수 기록이 없어요"}</b><div class="qchips">${qchipsHTML()}</div></div></div>`;
+    return;
+  }
+  const cats=[];rows.forEach(r=>{const c=r.cat||"기타";if(!cats.includes(c))cats.push(c)});
+  cats.sort((a,b)=>{const ia=T_CATS.indexOf(a),ib=T_CATS.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b)});
+  const groups=cats.map(c=>{
+    const g=rows.filter(r=>(r.cat||"기타")===c).sort((a,b)=>(b.start||"").localeCompare(a.start||""));
+    const gs=tSums(g);
+    return `<div class="tgroup"><div class="tg-h"><b>${esc(c)}</b><span>관내 ${fmtScore(gs.inS)} · 관외 ${fmtScore(gs.outS)}</span></div>
+      <div class="thead"><span>내용</span><span>관내</span><span>관외</span></div>
+      ${g.map(t=>{const ref=t.refId&&findItem(t.refId);return `<button type="button" class="trow" data-tid="${esc(t.id)}">
+        <span class="tt"><b>${esc(t.title||c)}</b><small>${esc(tPeriod(t))}${ref?`<span class="tref" role="link" tabindex="0" data-ref="${esc(ref.id)}">${KIND[ref.kind]} 보기</span>`:""}</small></span>
+        ${scoreCell(t.inScore)}${scoreCell(t.outScore)}</button>`}).join("")}</div>`;
+  }).join("");
+  $("list").innerHTML=`<div class="tboard">${tiles}${groups}</div>`;
+}
+function copyTransfer(){
+  const rows=tVisible();if(!rows.length){toast("복사할 점수 기록이 없어요");return}
+  const clean=s=>String(s==null?"":s).replace(/[\t\r\n]+/g," ");
+  const sc=v=>hasScore(v)?fmtScore(v):"";
+  const lines=[["항목","내용","기간","관내","관외","근거"].join("\t")];
+  rows.slice().sort((a,b)=>(a.cat||"").localeCompare(b.cat||"")||(a.start||"").localeCompare(b.start||"")).forEach(t=>{
+    const ref=t.refId&&findItem(t.refId);
+    lines.push([t.cat,t.title,tPeriod(t),sc(t.inScore),sc(t.outScore),ref?ref.title:""].map(clean).join("\t"));
+  });
+  const sm=tSums(rows);lines.push(["합계","","",fmtScore(sm.inS),fmtScore(sm.outS),""].join("\t"));
+  copyText(lines.join("\n"),`전보 점수 ${rows.length}건을 표로 복사했어요`);
+}
+function tRefOptions(sel){
+  const list=S.data.items.filter(i=>i.kind!=="training"||i.source==="manual").slice().sort((a,b)=>dateKey(b).localeCompare(dateKey(a)));
+  return `<option value="">없음</option>`+list.map(i=>`<option value="${esc(i.id)}"${i.id===sel?" selected":""}>[${KIND[i.kind]}] ${esc((dateKey(i)||"").slice(0,7))} ${esc((i.title||"").slice(0,48))}</option>`).join("");
+}
+let tArmT=null;
+function tDisarm(){const b=$("tDel");b.classList.remove("arm");b.querySelector("span").textContent="삭제";clearTimeout(tArmT)}
+function openTEditor(t,cat){
+  S.tEditId=t?t.id:null;tDisarm();
+  $("tHead").textContent=t?"전보 점수 수정":"전보 점수 추가";
+  $("tCat").value=t?t.cat||"":(cat||"");$("tDesc").value=t?t.title||"":"";
+  $("tStart").value=t?t.start||"":"";$("tEnd").value=t?t.end||"":"";
+  $("tIn").value=t&&hasScore(t.inScore)?t.inScore:"";$("tOut").value=t&&hasScore(t.outScore)?t.outScore:"";
+  $("tRef").innerHTML=tRefOptions(t?t.refId:"");$("tNote").value=t?t.note||"":"";
+  $("tDel").hidden=!t;$("tEditor").hidden=false;
+  setTimeout(()=>(cat||t?$("tDesc"):$("tCat")).focus(),40);
+}
+function closeTEditor(){$("tEditor").hidden=true;S.tEditId=null;tDisarm()}
+function onTSave(ev){
+  ev.preventDefault();
+  const cat=$("tCat").value.trim()||"기타";
+  const n=v=>v===""?null:Number(v);
+  let t=S.tEditId?(S.data.transfer||[]).find(x=>x.id===S.tEditId):null;const isNew=!t;
+  if(isNew){t={id:uid(),createdAt:new Date().toISOString()};S.data.transfer=S.data.transfer||[];S.data.transfer.push(t)}
+  Object.assign(t,{cat,title:$("tDesc").value.trim(),start:$("tStart").value||"",end:$("tEnd").value||"",
+    inScore:n($("tIn").value),outScore:n($("tOut").value),refId:$("tRef").value||"",note:$("tNote").value.trim()});
+  closeTEditor();render();persist();toast(isNew?"추가했어요":"저장했어요");
+}
+function onTDelete(){
+  const b=$("tDel");
+  if(!b.classList.contains("arm")){b.classList.add("arm");b.querySelector("span").textContent="한 번 더 누르면 삭제";tArmT=setTimeout(tDisarm,3500);return}
+  const id=S.tEditId;S.data.transfer=(S.data.transfer||[]).filter(x=>x.id!==id);closeTEditor();render();persist();toast("삭제했어요");
 }
 
 /* ---------- drawer ---------- */
@@ -737,8 +982,11 @@ function renderDrawer(){
   $("dKind").className="kind k-"+it.kind;$("dKind").textContent=KIND[it.kind];
   $("dSrc").textContent=SRC[it.source]||"";$("dSrc").hidden=!SRC[it.source];
   $("dTitle").textContent=it.title||"(제목 없음)";
+  $("dAi").hidden=it.kind!=="training";$("dAi").setAttribute("aria-pressed",String(isAI(it)));
+  $("dAi").querySelector("span").textContent=isAI(it)?"AI 연수 ✓":"AI 연수로 표시";
   const d=it.doc||{};
   const facts=[["기관",it.org],["기간",fullPeriod(it),1],["시간",it.hours?num(it.hours)+"시간":"",1],
+    ["형태",it.kind==="training"&&!(it.extra&&it.extra["형태"])&&formOf(it)!=="미분류"?formOf(it):""],
     ["문서번호",d.no,1],["기안자",d.drafter],["결재",d.approver],["기안일",fmtD(d.date),1]]
     .concat(Object.entries(it.extra||{}).map(([k,v])=>[k,v]))
     .concat([["태그",(it.tags||[]).join(", ")],["메모",it.note]]).filter(r=>r[1]);
@@ -796,6 +1044,7 @@ function onDelete(){
 function syncKindFields(){
   const k=document.querySelector('input[name="kind"]:checked').value;
   $("fHoursWrap").hidden=k!=="training";$("fDocNoWrap").hidden=k!=="doc";
+  $("fTrainWrap").hidden=k!=="training";$("fAiWrap").hidden=k!=="training";
 }
 function openEditor(it){
   S.editId=it?it.id:null;
@@ -806,6 +1055,9 @@ function openEditor(it){
   $("fStart").value=it?it.start||"":"";$("fEnd").value=it?it.end||"":"";
   $("fHours").value=it&&it.hours?it.hours:"";$("fDocNo").value=it&&it.doc?it.doc.no||"":"";
   $("fTags").value=it?(it.tags||[]).join(", "):"";$("fNote").value=it?it.note||"":"";
+  const fx=(it&&it.extra)||{};const ff=formOf(it||{});
+  $("fForm").value=it&&ff!=="미분류"?ff:"";$("fComp").value=fx["이수번호"]||"";
+  $("fAi").checked=it?isAI(it):S.ai;
   syncKindFields();$("editor").hidden=false;setTimeout(()=>$("fTitle").focus(),40);
 }
 function closeEditor(){$("editor").hidden=true;S.editId=null}
@@ -824,6 +1076,13 @@ function onSave(ev){
   const no=$("fDocNo").value.trim();
   if(kind==="doc"){it.doc=Object.assign({},it.doc||{},{no})}
   it.tags=$("fTags").value.split(/[,，]/).map(s=>s.trim()).filter(Boolean);
+  if(kind==="training"){
+    it.tags=it.tags.filter(t=>t!==AI_TAG);if($("fAi").checked)it.tags.unshift(AI_TAG);
+    it.extra=Object.assign({},it.extra||{});
+    const fv=$("fForm").value,cv=$("fComp").value.trim();
+    if(fv)it.extra["형태"]=fv;else delete it.extra["형태"];
+    if(cv)it.extra["이수번호"]=cv;else delete it.extra["이수번호"];
+  }
   it.note=$("fNote").value.trim();
   closeEditor();render();if(S.openId)renderDrawer();persist();toast(isNew?"추가했어요":"저장했어요");
 }
@@ -857,6 +1116,7 @@ window.PF={
   importItems,
   items:()=>S.data.items.map(i=>({id:i.id,kind:i.kind,title:i.title,start:i.start,docNo:i.doc&&i.doc.no,files:(i.files||[]).map(f=>f.name)})),
   open:id=>openDrawer(id),
+  transfer:()=>(S.data.transfer||[]).map(t=>Object.assign({},t)),
   update:async(id,patch)=>{const it=findItem(id);if(!it)return false;Object.assign(it,patch);render();if(S.openId===id)renderDrawer();await persist();return true}
 };
 
@@ -867,9 +1127,24 @@ $("tabs").addEventListener("click",e=>{const t=e.target.closest(".tab");if(!t)re
 $("q").addEventListener("input",e=>{S.q=e.target.value;render()});
 $("year").addEventListener("change",e=>{S.year=e.target.value;render()});
 $("copyBtn").addEventListener("click",copyTable);
-$("addBtn").addEventListener("click",()=>openEditor(null));
+$("addBtn").addEventListener("click",()=>S.filter==="transfer"?openTEditor(null):openEditor(null));
+$("aiTog").addEventListener("click",()=>{S.ai=!S.ai;render()});
+$("formSeg").addEventListener("click",e=>{const b=e.target.closest("button[data-f]");if(!b)return;S.form=b.dataset.f;render()});
+$("dAi").addEventListener("click",()=>{const it=findItem(S.openId);if(!it)return;const on=isAI(it);
+  it.tags=(it.tags||[]).filter(t=>t!==AI_TAG);if(!on)it.tags.unshift(AI_TAG);
+  renderDrawer();render();persist();toast(on?"AI 연수에서 뺐어요":"AI 연수로 표시했어요")});
+$("tForm").addEventListener("submit",onTSave);
+$("tCancel").addEventListener("click",closeTEditor);
+$("tDel").addEventListener("click",onTDelete);
+$("tEditor").addEventListener("click",e=>{if(e.target===$("tEditor"))closeTEditor()});
+$("tChips").addEventListener("click",e=>{const c=e.target.closest("[data-tcat]");if(c){$("tCat").value=c.dataset.tcat;$("tDesc").focus()}});
+$("tChips").innerHTML=T_CATS.slice(0,8).map(c=>`<button type="button" class="qchip" data-tcat="${esc(c)}">${esc(c)}</button>`).join("");
+$("tCats").innerHTML=T_CATS.map(c=>`<option value="${esc(c)}"></option>`).join("");
 $("list").addEventListener("click",e=>{
   if(e.target.closest('[data-act="add"]')){openEditor(null);return}
+  const rf=e.target.closest("[data-ref]");if(rf){e.stopPropagation();openDrawer(rf.dataset.ref);return}
+  const qc=e.target.closest("[data-tcat]");if(qc){openTEditor(null,qc.dataset.tcat);return}
+  const tr=e.target.closest("[data-tid]");if(tr){const t=(S.data.transfer||[]).find(x=>x.id===tr.dataset.tid);if(t)openTEditor(t);return}
   const a=e.target.closest(".item");if(a)openDrawer(a.dataset.id);
 });
 $("list").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("item")){e.preventDefault();openDrawer(e.target.dataset.id)}});
@@ -883,7 +1158,7 @@ $("form").addEventListener("submit",onSave);
 $("edCancel").addEventListener("click",closeEditor);
 $("editor").addEventListener("click",e=>{if(e.target===$("editor"))closeEditor()});
 document.querySelectorAll('input[name="kind"]').forEach(r=>r.addEventListener("change",syncKindFields));
-document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(!$("editor").hidden)closeEditor();else if(S.openId)closeDrawer()});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(!$("tEditor").hidden)closeTEditor();else if(!$("editor").hidden)closeEditor();else if(S.openId)closeDrawer()});
 window.addEventListener("resize",moveInd);
 
 /* ---------- 시작 ---------- */
