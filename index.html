@@ -359,6 +359,33 @@ svg{display:block}
 .qchip:hover{border-color:var(--leaf);color:var(--green);transform:translateY(-2px);box-shadow:var(--shadow)}
 .modal-card .qchips{justify-content:flex-start}
 
+/* ---------- 웹앱 ---------- */
+.k-webapp{background:var(--ink);color:var(--bg)}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px}
+.wcard{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;
+  box-shadow:var(--shadow);min-width:0;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+  animation:rise .5s var(--ease) both;animation-delay:calc(var(--i,0) * 35ms)}
+.wcard:hover,.wcard:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--leaf);outline:none}
+.wthumb{aspect-ratio:16/10;background:var(--surface-2);display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+.wthumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .5s var(--ease)}
+.wcard:hover .wthumb img{transform:scale(1.04)}
+.wthumb b{font-family:var(--f-display);font-weight:400;font-size:46px;color:var(--green);transition:transform .5s var(--ease)}
+.wcard:hover .wthumb b{transform:rotate(-8deg) scale(1.08)}
+.wopen{position:absolute;top:10px;right:10px;box-shadow:0 6px 14px -8px rgba(0,0,0,.45)}
+.wbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
+.wbody h3{margin:0;font-size:15.5px;font-weight:700;line-height:1.4;overflow-wrap:anywhere;transition:color .2s}
+.wcard:hover .wbody h3{color:var(--chip-ink)}
+.wmeta{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.wbody p{margin:0;font-size:13px;line-height:1.55;color:var(--ink);opacity:.82;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.wtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:6px}
+.wtags span{font-size:11.5px;font-weight:600;padding:3px 7px;border-radius:6px;background:var(--green-soft);color:var(--chip-ink)}
+.d-thumb{border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2)}
+.d-thumb img{display:block;width:100%}
+.d-link{display:flex;gap:8px;flex-wrap:wrap}
+.fthumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fthumb img{width:112px;height:70px;object-fit:cover;object-position:top;border-radius:9px;border:1px solid var(--line)}
+.fthumb .none{flex:1}
+
 @media (max-width:720px){
   .controls{flex-direction:column;align-items:stretch}
   .tools{justify-content:space-between}
@@ -397,7 +424,7 @@ svg{display:block}
   <div class="gate-card">
     <div class="gate-mark" aria-hidden="true">AI</div>
     <h1>황영수 포트폴리오</h1>
-    <p class="gate-sub">연수 · 활동 · 공문</p>
+    <p class="gate-sub">연수 · 활동 · 공문 · 웹앱</p>
     <button id="loginBtn" class="btn primary lg go" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.78A6 6 0 0 0 4.5 12.5 3.5 3.5 0 0 0 6 19z"/></svg>
       <span>Google 계정으로 시작</span>
@@ -431,6 +458,7 @@ svg{display:block}
         <button class="tab" role="tab" data-k="training" aria-selected="false">연수 <span class="n" data-n="training">0</span></button>
         <button class="tab" role="tab" data-k="activity" aria-selected="false">활동 <span class="n" data-n="activity">0</span></button>
         <button class="tab" role="tab" data-k="doc" aria-selected="false">공문 <span class="n" data-n="doc">0</span></button>
+        <button class="tab" role="tab" data-k="webapp" aria-selected="false">웹앱 <span class="n" data-n="webapp">0</span></button>
         <button class="tab" role="tab" data-k="transfer" aria-selected="false">전보 <span class="n" data-n="transfer">0</span></button>
       </nav>
       <div class="tools">
@@ -474,6 +502,13 @@ svg{display:block}
   <div class="d-scroll">
     <h2 class="d-title" id="dTitle"></h2>
     <dl class="facts" id="dFacts"></dl>
+    <section class="sec" id="dWebSec" hidden>
+      <div class="d-thumb" id="dThumb" hidden></div>
+      <div class="d-link">
+        <a class="btn primary sm go" id="dOpen" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg><span>웹앱 열기</span></a>
+        <button class="btn ghost sm copy" id="dCopyUrl" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>링크 복사</span></button>
+      </div>
+    </section>
     <section class="sec" id="dBodySec" hidden>
       <div class="sec-h"><h4>본문</h4><div class="acts">
         <button class="btn ghost sm copy" id="dCopyBody" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>복사</span></button>
@@ -503,12 +538,26 @@ svg{display:block}
       <label><input type="radio" name="kind" id="kTraining" value="training" checked><span>연수</span></label>
       <label><input type="radio" name="kind" id="kActivity" value="activity"><span>활동</span></label>
       <label><input type="radio" name="kind" id="kDoc" value="doc"><span>공문</span></label>
+      <label><input type="radio" name="kind" id="kWebapp" value="webapp"><span>웹앱</span></label>
     </div>
-    <label class="field"><span>제목</span><input id="fTitle" required></label>
-    <label class="field"><span>기관</span><input id="fOrg"></label>
+    <label class="field"><span id="fTitleL">제목</span><input id="fTitle" required></label>
+    <label class="field"><span id="fOrgL">기관</span><input id="fOrg"></label>
+    <div id="fWebWrap" hidden>
+      <label class="field"><span>링크</span><input id="fUrl" type="url" inputmode="url" placeholder="https://"></label>
+      <div class="row2" style="margin-top:14px">
+        <label class="field"><span>대상</span><input id="fTarget" placeholder="예: 5학년 학생, 교사 연수"></label>
+        <label class="field"><span>만든 도구</span><input id="fTool" placeholder="예: Claude Code, Firebase"></label>
+      </div>
+      <div class="field" style="margin-top:14px"><span>대표 그림</span>
+        <div class="fthumb"><span id="fThumbBox"></span>
+          <label class="btn ghost sm up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg><span>그림 고르기</span><input id="fThumb" type="file" accept="image/*" hidden></label>
+          <button class="btn ghost sm" type="button" id="fThumbDel" hidden><span>빼기</span></button>
+        </div>
+      </div>
+    </div>
     <div class="row">
-      <label class="field"><span>시작</span><input id="fStart" type="date"></label>
-      <label class="field"><span>끝</span><input id="fEnd" type="date"></label>
+      <label class="field"><span id="fStartL">시작</span><input id="fStart" type="date"></label>
+      <label class="field"><span id="fEndL">끝</span><input id="fEnd" type="date"></label>
       <label class="field" id="fHoursWrap"><span>시간</span><input id="fHours" type="number" min="0" step="0.5" inputmode="decimal"></label>
     </div>
     <div class="row2" id="fTrainWrap">
@@ -553,6 +602,7 @@ svg{display:block}
   </form>
 </div>
 
+<input id="wImport" type="file" accept=".json,application/json" hidden>
 <div class="toast" id="toast" role="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span id="toastTx"></span></div>
 <script src="config.js"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -570,7 +620,7 @@ const FOLDER_MIME="application/vnd.google-apps.folder";
 const DRIVE="https://www.googleapis.com/drive/v3/";
 const UPLOAD="https://www.googleapis.com/upload/drive/v3/files";
 const FF="id,name,mimeType,size,webViewLink,createdTime";
-const KIND={training:"연수",activity:"활동",doc:"공문"};
+const KIND={training:"연수",activity:"활동",doc:"공문",webapp:"웹앱"};
 const SRC={neis:"나이스",edufine:"에듀파인",manual:"직접 입력"};
 const MIME={pdf:"application/pdf",hwp:"application/x-hwp",hwpx:"application/hwp+zip",doc:"application/msword",
   docx:"application/vnd.openxmlformats-officedocument.wordprocessingml.document",xls:"application/vnd.ms-excel",
@@ -581,7 +631,7 @@ const MIME={pdf:"application/pdf",hwp:"application/x-hwp",hwpx:"application/hwp+
 const $=id=>document.getElementById(id);
 const S={user:null,folder:null,docsFolderId:null,attachFolderId:null,dataFile:null,dirty:false,
   data:{version:1,owner:"황영수",items:[],transfer:[]},filter:"all",year:"all",q:"",openId:null,editId:null,bodyCache:{},loading:false,
-  ai:false,form:"all",tEditId:null};
+  ai:false,form:"all",tEditId:null,thumbDraft:""};
 let tokenClient=null,token=null,tokenExp=0;
 
 /* ---------- helpers ---------- */
@@ -621,6 +671,24 @@ function hoursOf(rows){return rows.reduce((a,r)=>a+(Number(r.hours)||0),0)}
 function fmtScore(x){const n=Number(x)||0;return String(Math.round(n*1000)/1000)}
 const T_CATS=["근무 학교","근무경력","담임 경력","보직교사(부장) 경력","학교폭력 업무 담당","업무 담당 경력","연구학교 근무","벽지·농어촌 근무","연구 실적","특수 업무","기타 가산점"];
 function safeName(s){return String(s||"").replace(/[\\/:*?"<>|\r\n\t]+/g," ").replace(/\s+/g," ").trim().slice(0,90)}
+/* 웹앱: 링크는 http(s)만, 대표 그림은 이 앱이 줄여 만든 data:image 또는 https 주소만 */
+function webOf(it){return it.web&&typeof it.web==="object"?it.web:{}}
+function safeUrl(u){u=String(u||"").trim();return /^https?:\/\//i.test(u)?u:""}
+function safeImg(u){u=String(u||"");return /^data:image\/(jpeg|png|webp);base64,[a-z0-9+/=]+$/i.test(u)||/^https:\/\//i.test(u)?u:""}
+function shrinkImage(file,maxW){
+  return new Promise((res,rej)=>{
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onload=()=>{
+      const k=Math.min(1,(maxW||560)/img.naturalWidth),c=document.createElement("canvas");
+      c.width=Math.max(1,Math.round(img.naturalWidth*k));c.height=Math.max(1,Math.round(img.naturalHeight*k));
+      const g=c.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);
+      let q=.74,d=c.toDataURL("image/jpeg",q);while(d.length>120000&&q>.4){q-=.1;d=c.toDataURL("image/jpeg",q)}
+      res(d);
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error("그림을 읽지 못했어요"))};
+    img.src=url;
+  });
+}
 
 let toastT=null;
 function toast(msg){$("toastTx").textContent=msg;$("toast").classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>$("toast").classList.remove("on"),2400)}
@@ -789,13 +857,14 @@ function visible(){
   return S.data.items.filter(it=>{
     if(S.year!=="all"&&!dateKey(it).startsWith(S.year))return false;
     if(!q)return true;
-    const hay=[it.title,it.org,it.note,(it.tags||[]).join(" "),it.doc&&it.doc.no,Object.values(it.extra||{}).join(" ")].join(" ").toLowerCase();
+    const w=webOf(it);
+    const hay=[it.title,it.org,it.note,(it.tags||[]).join(" "),it.doc&&it.doc.no,Object.values(it.extra||{}).join(" "),w.url,w.target,w.tool].join(" ").toLowerCase();
     return hay.includes(q);
   });
 }
 function render(){
   const base=visible();
-  const counts={all:base.length,training:0,activity:0,doc:0,transfer:tVisible().length};let hours=0;
+  const counts={all:base.length,training:0,activity:0,doc:0,webapp:0,transfer:tVisible().length};let hours=0;
   base.forEach(it=>{counts[it.kind]++;if(it.kind==="training"&&it.hours)hours+=Number(it.hours)||0});
   document.querySelectorAll("[data-n]").forEach(el=>el.textContent=counts[el.dataset.n]);
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",String(t.dataset.k===S.filter)));
@@ -808,6 +877,7 @@ function render(){
   $("subbar").hidden=!isT;$("yearWrap").hidden=isX;
   if(isX){renderTransfer();return}
   let rows=base.filter(it=>S.filter==="all"||it.kind===S.filter).sort((a,b)=>dateKey(b).localeCompare(dateKey(a)));
+  if(S.filter==="webapp"){renderWebapps(rows);return}
   if(isT){renderSubbar(rows);rows=rows.filter(trainPass);$("sum").innerHTML=trainSumHTML(rows)}
   else $("sum").innerHTML=counts.training?`<span>연수</span><b>${num(hours)}</b><span>시간</span><span class="sep"></span><span>${counts.training}건</span>`:"";
   const listEl=$("list");
@@ -823,7 +893,8 @@ function render(){
 }
 function itemHTML(it,i){
   const files=(it.files||[]).length;
-  const meta=[it.org,it.kind==="training"&&it.hours?num(it.hours)+"시간":null,it.doc&&it.doc.no].filter(Boolean).map(esc).join(" · ");
+  const w=it.kind==="webapp"?webOf(it):{};
+  const meta=[it.org,it.kind==="training"&&it.hours?num(it.hours)+"시간":null,it.doc&&it.doc.no,w.target,w.tool].filter(Boolean).map(esc).join(" · ");
   const src=it.source&&it.source!=="manual"?`<span class="src">${SRC[it.source]||""}</span>`:"";
   return `<article class="item" tabindex="0" role="button" data-id="${esc(it.id)}" style="--i:${Math.min(i,14)}">
     <span class="node" aria-hidden="true"></span>
@@ -834,6 +905,41 @@ function itemHTML(it,i){
     </div>
     <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
   </article>`;
+}
+/* ---------- 웹앱 카드 ---------- */
+const OPEN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+function renderWebapps(rows){
+  const imp=`<button class="btn ghost sm up" type="button" data-act="wimport" style="margin-left:auto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg><span>묶음 가져오기</span></button>`;
+  $("sum").innerHTML=(rows.length?`<span>웹앱</span><b>${rows.length}</b><span>개</span>`:"")+imp;
+  const listEl=$("list");
+  if(!rows.length){listEl.innerHTML=emptyHTML(S.q||S.year!=="all"?"찾는 웹앱이 없어요":"아직 올린 웹앱이 없어요",!S.q);return}
+  listEl.innerHTML=`<div class="wgrid">${rows.map(webCardHTML).join("")}</div>`;
+}
+function webCardHTML(it,i){
+  const w=webOf(it),url=safeUrl(w.url),img=safeImg(w.thumb);
+  const meta=[w.target,w.tool,it.start?fmtD(it.start.slice(0,7)):""].filter(Boolean).map(esc).join(" · ");
+  const tags=(it.tags||[]).slice(0,4);
+  return `<article class="wcard" tabindex="0" role="button" data-id="${esc(it.id)}" style="--i:${Math.min(i,14)}">
+    <div class="wthumb">${img?`<img src="${esc(img)}" alt="" loading="lazy">`:`<b>${esc((it.title||"웹").trim().charAt(0))}</b>`}</div>
+    ${url?`<a class="btn primary sm go wopen" href="${esc(url)}" target="_blank" rel="noopener" data-open>${OPEN_SVG}<span>열기</span></a>`:""}
+    <div class="wbody"><h3>${esc(it.title||"(이름 없음)")}</h3>${meta?`<div class="wmeta">${meta}</div>`:""}${it.note?`<p>${esc(it.note)}</p>`:""}
+      ${tags.length?`<div class="wtags">${tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}</div>
+  </article>`;
+}
+async function importBundle(file){
+  let list;
+  try{const j=JSON.parse(await file.text());list=Array.isArray(j)?j:(j&&Array.isArray(j.items)?j.items:null)}catch(e){list=null}
+  if(!list){toast("웹앱 묶음 파일이 아니에요");return}
+  list=list.filter(x=>x&&typeof x==="object"&&x.title).map(x=>Object.assign({},x,{kind:KIND[x.kind]?x.kind:"webapp"}));
+  try{const r=await importItems(list);toast((r.added.length?r.added.length+"개를 넣었어요":"새로 넣을 웹앱이 없어요")+(r.skipped.length?` · ${r.skipped.length}개는 이미 있어요`:""))}
+  catch(e){onErr(e)}
+}
+function copyWeb(){
+  const rows=visible().filter(it=>it.kind==="webapp").sort((a,b)=>dateKey(a).localeCompare(dateKey(b)));
+  if(!rows.length){toast("복사할 웹앱이 없어요");return}
+  const clean=s=>String(s==null?"":s).replace(/[\t\r\n]+/g," ");
+  const lines=[["이름","대상","만든 도구","만든 날","링크"].join("\t")].concat(rows.map(it=>{const w=webOf(it);return [it.title,w.target,w.tool,fmtD(it.start),safeUrl(w.url)].map(clean).join("\t")}));
+  copyText(lines.join("\n"),"웹앱 "+rows.length+"개를 표로 복사했어요");
 }
 function emptyHTML(t,add){
   return `<div class="empty"><div class="empty-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></div><b>${t}</b>${add?`<button class="btn primary add" type="button" data-act="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>추가</span></button>`:""}</div>`;
@@ -846,6 +952,7 @@ function moveInd(){
 function copyTable(){
   if(S.filter==="training")return copyTraining();
   if(S.filter==="transfer")return copyTransfer();
+  if(S.filter==="webapp")return copyWeb();
   const rows=visible().filter(it=>S.filter==="all"||it.kind===S.filter).sort((a,b)=>dateKey(a).localeCompare(dateKey(b)));
   if(!rows.length){toast("복사할 기록이 없어요");return}
   const head=["구분","제목","기관","기간","시간"];
@@ -984,8 +1091,14 @@ function renderDrawer(){
   $("dTitle").textContent=it.title||"(제목 없음)";
   $("dAi").hidden=it.kind!=="training";$("dAi").setAttribute("aria-pressed",String(isAI(it)));
   $("dAi").querySelector("span").textContent=isAI(it)?"AI 연수 ✓":"AI 연수로 표시";
-  const d=it.doc||{};
-  const facts=[["기관",it.org],["기간",fullPeriod(it),1],["시간",it.hours?num(it.hours)+"시간":"",1],
+  const d=it.doc||{},isW=it.kind==="webapp",w=isW?webOf(it):{},wUrl=safeUrl(w.url),wImg=safeImg(w.thumb);
+  $("dWebSec").hidden=!isW;
+  if(isW){
+    $("dThumb").hidden=!wImg;$("dThumb").innerHTML=wImg?`<img src="${esc(wImg)}" alt="${esc(it.title||"")} 화면">`:"";
+    $("dOpen").hidden=!wUrl;$("dOpen").href=wUrl||"#";$("dCopyUrl").hidden=!wUrl;
+  }
+  const facts=[["기관",it.org],[isW?"만든 날":"기간",fullPeriod(it),1],["시간",it.hours?num(it.hours)+"시간":"",1],
+    ["링크",wUrl,1],["대상",w.target],["만든 도구",w.tool],
     ["형태",it.kind==="training"&&!(it.extra&&it.extra["형태"])&&formOf(it)!=="미분류"?formOf(it):""],
     ["문서번호",d.no,1],["기안자",d.drafter],["결재",d.approver],["기안일",fmtD(d.date),1]]
     .concat(Object.entries(it.extra||{}).map(([k,v])=>[k,v]))
@@ -1045,6 +1158,14 @@ function syncKindFields(){
   const k=document.querySelector('input[name="kind"]:checked').value;
   $("fHoursWrap").hidden=k!=="training";$("fDocNoWrap").hidden=k!=="doc";
   $("fTrainWrap").hidden=k!=="training";$("fAiWrap").hidden=k!=="training";
+  const w=k==="webapp";$("fWebWrap").hidden=!w;
+  $("fTitleL").textContent=w?"웹앱 이름":"제목";$("fOrgL").textContent=w?"쓰는 곳 (학교 · 연수 등)":"기관";
+  $("fStartL").textContent=w?"만든 날":"시작";$("fEndL").textContent=w?"마지막 수정":"끝";
+}
+function drawThumbDraft(){
+  const img=safeImg(S.thumbDraft);
+  $("fThumbBox").innerHTML=img?`<img src="${esc(img)}" alt="대표 그림">`:`<span class="none">없음 — 화면 캡처를 골라 주세요</span>`;
+  $("fThumbDel").hidden=!img;
 }
 function openEditor(it){
   S.editId=it?it.id:null;
@@ -1058,6 +1179,9 @@ function openEditor(it){
   const fx=(it&&it.extra)||{};const ff=formOf(it||{});
   $("fForm").value=it&&ff!=="미분류"?ff:"";$("fComp").value=fx["이수번호"]||"";
   $("fAi").checked=it?isAI(it):S.ai;
+  const w=it?webOf(it):{};
+  $("fUrl").value=w.url||"";$("fTarget").value=w.target||"";$("fTool").value=w.tool||"";
+  S.thumbDraft=w.thumb||"";drawThumbDraft();
   syncKindFields();$("editor").hidden=false;setTimeout(()=>$("fTitle").focus(),40);
 }
 function closeEditor(){$("editor").hidden=true;S.editId=null}
@@ -1067,6 +1191,9 @@ function onSave(ev){
   if(!title){$("fTitle").focus();$("fTitle").style.borderColor="var(--danger)";return}
   $("fTitle").style.borderColor="";
   const kind=document.querySelector('input[name="kind"]:checked').value;
+  const wu=$("fUrl").value.trim();
+  if(kind==="webapp"&&wu&&!safeUrl(wu)){$("fUrl").focus();$("fUrl").style.borderColor="var(--danger)";toast("링크는 https:// 로 시작해야 해요");return}
+  $("fUrl").style.borderColor="";
   let it=S.editId?findItem(S.editId):null;
   const isNew=!it;
   if(isNew){it=norm({id:uid(),source:"manual",createdAt:new Date().toISOString()});S.data.items.push(it)}
@@ -1083,6 +1210,8 @@ function onSave(ev){
     if(fv)it.extra["형태"]=fv;else delete it.extra["형태"];
     if(cv)it.extra["이수번호"]=cv;else delete it.extra["이수번호"];
   }
+  if(kind==="webapp")it.web={url:wu,target:$("fTarget").value.trim(),tool:$("fTool").value.trim(),thumb:safeImg(S.thumbDraft)};
+  else delete it.web;
   it.note=$("fNote").value.trim();
   closeEditor();render();if(S.openId)renderDrawer();persist();toast(isNew?"추가했어요":"저장했어요");
 }
@@ -1142,12 +1271,20 @@ $("tChips").innerHTML=T_CATS.slice(0,8).map(c=>`<button type="button" class="qch
 $("tCats").innerHTML=T_CATS.map(c=>`<option value="${esc(c)}"></option>`).join("");
 $("list").addEventListener("click",e=>{
   if(e.target.closest('[data-act="add"]')){openEditor(null);return}
+  if(e.target.closest("[data-open]"))return;
+  const wc=e.target.closest(".wcard");if(wc){openDrawer(wc.dataset.id);return}
   const rf=e.target.closest("[data-ref]");if(rf){e.stopPropagation();openDrawer(rf.dataset.ref);return}
   const qc=e.target.closest("[data-tcat]");if(qc){openTEditor(null,qc.dataset.tcat);return}
   const tr=e.target.closest("[data-tid]");if(tr){const t=(S.data.transfer||[]).find(x=>x.id===tr.dataset.tid);if(t)openTEditor(t);return}
   const a=e.target.closest(".item");if(a)openDrawer(a.dataset.id);
 });
-$("list").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("item")){e.preventDefault();openDrawer(e.target.dataset.id)}});
+$("list").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&(e.target.classList.contains("item")||e.target.classList.contains("wcard"))){e.preventDefault();openDrawer(e.target.dataset.id)}});
+$("sum").addEventListener("click",e=>{if(e.target.closest('[data-act="wimport"]'))$("wImport").click()});
+$("wImport").addEventListener("change",e=>{const f=e.target.files[0];e.target.value="";if(f)importBundle(f)});
+$("fThumb").addEventListener("change",async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;
+  try{S.thumbDraft=await shrinkImage(f,560);drawThumbDraft()}catch(er){toast(er.message||"그림을 읽지 못했어요")}});
+$("fThumbDel").addEventListener("click",()=>{S.thumbDraft="";drawThumbDraft()});
+$("dCopyUrl").addEventListener("click",()=>{const it=findItem(S.openId);const u=it&&safeUrl(webOf(it).url);if(u)copyText(u,"링크를 복사했어요")});
 $("scrim").addEventListener("click",closeDrawer);
 $("dClose").addEventListener("click",closeDrawer);
 $("dEdit").addEventListener("click",()=>{const it=findItem(S.openId);if(it)openEditor(it)});
